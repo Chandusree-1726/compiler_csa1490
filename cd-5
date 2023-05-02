@@ -1,29 +1,26 @@
-#include<stdio.h>
+#include <stdio.h>
+
 int main()
-{
-   FILE *fp;
-   char ch, fname[30];
-   int noOfChar=0, noOfSpace=0, noOfTab=0, noOfNewline=0;
-   printf("Enter file name with extension: ");
-   gets(fname);
-   fp = fopen(fname, "r");
-   while(fp)
-   {
-      ch = fgetc(fp);
-      if(ch==EOF)
-         break;
-      noOfChar++;
-      if(ch==' ')
-         noOfSpace++;
-      if(ch=='\t')
-         noOfTab++;
-      if(ch=='\n')
-         noOfNewline++;
-   }
-   fclose(fp);
-   printf("\nNumber of characters = %d", noOfChar);
-   printf("\nNumber of spaces = %d", noOfSpace);
-   printf("\nNumber of tabs = %d", noOfTab);
-   printf("\nNumber of newline = %d", noOfNewline);
-   return 0;
+ {
+    char input[1000];
+    int whitespace_count = 0;
+    int newline_count = 0;
+    int i = 0;
+
+    printf("Enter input: ");
+    fgets(input, sizeof(input), stdin);
+
+    while (input[i] != '\0') {
+        if (input[i] == ' ') {
+            whitespace_count++;
+        } else if (input[i] == '\n') {
+            newline_count++;
+        }
+        i++;
+    }
+
+    printf("Number of whitespace characters: %d\n", whitespace_count);
+    printf("Number of newline characters: %d\n", newline_count);
+
+    return 0;
 }
